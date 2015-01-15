@@ -2,27 +2,60 @@
 
 require_once 'vendor/autoload.php';
 
-use Phly\Http\ServerRequestFactory;
-use Phly\Http\Stream;
+use Aura\Router\RouterFactory;
+use Aura\Router\Router;
 use Crell\Stacker\CallableHttpKernel;
 use Crell\Stacker\HttpPathMiddleware;
+use Crell\Stacker\BasePathResolverMiddleware;
+use Crell\Stacker\StringStream;
+use Crell\Stacker\HttpSender;
+use Crell\Stacker\RoutingMiddleware;
+use Crell\Stacker\DispatchingMiddleware;
+use Phly\Http\ServerRequestFactory;
 use Phly\Http\Response;
 use Psr\Http\Message\RequestInterface;
-use Crell\Stacker\StringStream;
+
 
 $request = ServerRequestFactory::fromGlobals();
 
+// A trivial kernel.
 $kernel = new CallableHttpKernel(function (RequestInterface $request) {
     return new Response(new StringStream('Hello World'));
 });
 
+$kernel = new DispatchingMiddleware();
+
+// A routing-based middleware; doesn't actually do anything but the routing resolution.
+$router_factory = new RouterFactory;
+/** @var Router $router */
+$router = $router_factory->newInstance();
+
+$router->add('hello', '/hello/{name}')
+  ->addValues(array(
+    'action' => function(RequestInterface $request, $name) {
+        return new Response(new StringStream("Hello {$name}"));
+    },
+  ));
+
+$router->add('hello2', '/goodbye/{name}')
+  ->addValues(array(
+    'action' => function(RequestInterface $request, $name) {
+        return "Goodbye {$name}";
+    },
+  ));
+
+$kernel = new RoutingMiddleware($kernel, $router);
+
+// A one-off handler.
 $kernel = new HttpPathMiddleware($kernel, '/bye', function(RequestInterface $request) {
     return new Response(new StringStream('Goodbye World'));
 });
 
-$kernel = new \Crell\Stacker\BasePathResolverMiddleware($kernel, '/~crell/stacker');
+// The outer-most kernel, strip off a base path.
+// In actual usage this would be some derived value or configured or something.
+$kernel = new BasePathResolverMiddleware($kernel, '/~crell/stacker');
 
 $response = $kernel->handle($request);
 
-$sender = new \Crell\Stacker\HttpSender();
+$sender = new HttpSender();
 $sender->send($response);

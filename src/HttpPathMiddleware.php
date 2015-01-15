@@ -33,14 +33,8 @@ class HttpPathMiddleware implements HttpMiddlewareInterface
     public function handle(ServerRequestInterface $request)
     {
         // No, really, this step is total nonsense.
-        $uri = new Uri($request->getUrl());
-
-        $parts = parse_url($uri);
-
+        $parts = parse_url($request->getUrl());
         $path = $parts['path'];
-
-        //var_dump($uri);
-        //var_dump($this->path);
 
         if ($path == $this->path) {
             $call = $this->callable;

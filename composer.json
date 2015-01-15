@@ -1,7 +1,8 @@
 {
     "require": {
         "phly/http": "dev-feature/immutability@dev",
-        "psr/http-message": "dev-feature/immutability@dev"
+        "crell/transformer": "dev-master",
+        "aura/router": "2.2"
     },
     "autoload": {
         "psr-4": {
@@ -17,5 +18,6 @@
             "url": "https://github.com/weierophinney/http.git",
             "type": "vcs"
         }
-    ]
+    ],
+    "minimum-stability": "dev"
 }

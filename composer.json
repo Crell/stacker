@@ -1,0 +1,21 @@
+{
+    "require": {
+        "phly/http": "dev-feature/immutability@dev",
+        "psr/http-message": "dev-feature/immutability@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "Crell\\Stacker\\": "src/"
+        }
+    },
+    "repositories": [
+        {
+            "url": "https://github.com/weierophinney/http-message.git",
+            "type": "vcs"
+        },
+        {
+            "url": "https://github.com/weierophinney/http.git",
+            "type": "vcs"
+        }
+    ]
+}

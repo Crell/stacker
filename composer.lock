@@ -1,0 +1,380 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "5017ef485769516bc1c2a3c2baf749b7",
+    "packages": [
+        {
+            "name": "aura/router",
+            "version": "2.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/auraphp/Aura.Router.git",
+                "reference": "2544c687a5074ca8ce0dbe6d27a04c006a118e2a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/auraphp/Aura.Router/zipball/2544c687a5074ca8ce0dbe6d27a04c006a118e2a",
+                "reference": "2544c687a5074ca8ce0dbe6d27a04c006a118e2a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "aura": {
+                    "type": "library",
+                    "config": {
+                        "common": "Aura\\Router\\_Config\\Common"
+                    }
+                },
+                "branch-alias": {
+                    "dev-develop-2": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Aura\\Router\\": "src/",
+                    "Aura\\Router\\_Config\\": "config/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Aura.Router Contributors",
+                    "homepage": "https://github.com/auraphp/Aura.Router/contributors"
+                }
+            ],
+            "description": "A web router implementation; given a URI path and a copy of $_SERVER, it will extract path-info parameter values for a specific route.",
+            "homepage": "https://github.com/auraphp/Aura.Router",
+            "keywords": [
+                "route",
+                "router",
+                "routing"
+            ],
+            "time": "2014-11-10 15:51:58"
+        },
+        {
+            "name": "crell/transformer",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Crell/Transformer.git",
+                "reference": "55b9fbe40c73c4cb0bfe0b9c91cbd7b3763c734f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Crell/Transformer/zipball/55b9fbe40c73c4cb0bfe0b9c91cbd7b3763c734f",
+                "reference": "55b9fbe40c73c4cb0bfe0b9c91cbd7b3763c734f",
+                "shasum": ""
+            },
+            "require-dev": {
+                "codeclimate/php-test-reporter": "dev-master",
+                "phpunit/phpunit": "~4.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Crell\\Transformer\\": "src/",
+                    "Crell\\Transformer\\Tests\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Larry Garfield",
+                    "email": "larry@garfieldtech.com"
+                }
+            ],
+            "description": "A simple object transformation library",
+            "time": "2015-01-12 03:35:49"
+        },
+        {
+            "name": "phly/http",
+            "version": "dev-feature/immutability",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/weierophinney/http.git",
+                "reference": "4dfa1699be24ed5044e16c4330fee75725ef5038"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/weierophinney/http/zipball/4dfa1699be24ed5044e16c4330fee75725ef5038",
+                "reference": "4dfa1699be24ed5044e16c4330fee75725ef5038",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.8",
+                "psr/http-message": "dev-feature/full-mutability@dev"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*",
+                "squizlabs/php_codesniffer": "1.5.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev",
+                    "dev-develop": "1.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Phly\\Http\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "PhlyTest\\Http\\": "test/"
+                },
+                "files": [
+                    "test/TestAsset/Functions.php"
+                ]
+            },
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Matthew Weier O'Phinney",
+                    "email": "matthew@weierophinney.net",
+                    "homepage": "http://mwop.net"
+                }
+            ],
+            "description": "PSR HTTP Message implementations",
+            "homepage": "https://github.com/phly/http",
+            "keywords": [
+                "http"
+            ],
+            "support": {
+                "issues": "https://github.com/phly/http/issues",
+                "source": "https://github.com/phly/http"
+            },
+            "time": "2015-01-13 18:05:40"
+        },
+        {
+            "name": "psr/http-message",
+            "version": "dev-feature/full-mutability",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/weierophinney/http-message.git",
+                "reference": "9ffea55a78a3960822f28949bcda443eb977b29c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/weierophinney/http-message/zipball/9ffea55a78a3960822f28949bcda443eb977b29c",
+                "reference": "9ffea55a78a3960822f28949bcda443eb977b29c",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Http\\Message\\": "src"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for HTTP messages",
+            "keywords": [
+                "http",
+                "http-message",
+                "psr",
+                "psr-7",
+                "request",
+                "response"
+            ],
+            "support": {
+                "source": "https://github.com/weierophinney/http-message/tree/feature/full-mutability"
+            },
+            "time": "2015-01-07 22:10:57"
+        },
+        {
+            "name": "symfony/serializer",
+            "version": "2.7.x-dev",
+            "target-dir": "Symfony/Component/Serializer",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/Serializer.git",
+                "reference": "adaaeb3eb9cab1066f5979a53b783ed3b2684a03"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/Serializer/zipball/adaaeb3eb9cab1066f5979a53b783ed3b2684a03",
+                "reference": "adaaeb3eb9cab1066f5979a53b783ed3b2684a03",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.9"
+            },
+            "require-dev": {
+                "doctrine/annotations": "~1.0",
+                "doctrine/cache": "~1.0",
+                "symfony/config": "~2.2|~3.0.0",
+                "symfony/yaml": "~2.0|~3.0.0"
+            },
+            "suggest": {
+                "doctrine/annotations": "For using the annotation mapping. You will also need doctrine/cache.",
+                "doctrine/cache": "For using the default cached annotation reader and metadata cache.",
+                "symfony/config": "For using the XML mapping loader.",
+                "symfony/yaml": "For using the default YAML mapping loader."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.7-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Component\\Serializer\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                },
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                }
+            ],
+            "description": "Symfony Serializer Component",
+            "homepage": "http://symfony.com",
+            "time": "2015-01-09 06:51:41"
+        },
+        {
+            "name": "willdurand/negotiation",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/willdurand/Negotiation.git",
+                "reference": "17b357c97175840200699012c8c536b4f6d43034"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/willdurand/Negotiation/zipball/17b357c97175840200699012c8c536b4f6d43034",
+                "reference": "17b357c97175840200699012c8c536b4f6d43034",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Negotiation": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "William Durand",
+                    "email": "william.durand1@gmail.com"
+                }
+            ],
+            "description": "Content Negotiation tools for PHP provided as a standalone library.",
+            "homepage": "http://williamdurand.fr/Negotiation/",
+            "keywords": [
+                "accept",
+                "content",
+                "format",
+                "header",
+                "negotiation"
+            ],
+            "time": "2014-10-29 23:21:49"
+        },
+        {
+            "name": "willdurand/stack-negotiation",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/willdurand/StackNegotiation.git",
+                "reference": "d3e185e7de7302fdad6230973f408a8795ab86bd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/willdurand/StackNegotiation/zipball/d3e185e7de7302fdad6230973f408a8795ab86bd",
+                "reference": "d3e185e7de7302fdad6230973f408a8795ab86bd",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "symfony/serializer": "~2.1",
+                "willdurand/negotiation": "~1.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~3.7",
+                "symfony/http-kernel": "~2.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Negotiation": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "William Durand",
+                    "email": "william.durand1@gmail.com"
+                }
+            ],
+            "description": "Stack middleware for content negotiation.",
+            "time": "2014-10-28 15:35:05"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "phly/http": 20,
+        "crell/transformer": 20,
+        "willdurand/stack-negotiation": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}

@@ -27,6 +27,12 @@ $kernel = new CallableHttpKernel(function (RequestInterface $request) {
     return new Response(new StringStream('Hello World'));
 });
 
+
+// The real middlewares in use are below.
+// Note that they are created "inside out", so the final one that handles all requests for realsies
+// is the last one defined.
+
+
 $bus = new TransformerBus(ResponseInterface::class);
 
 $bus->setTransformer(StringValue::class, function (StringValue $string) {

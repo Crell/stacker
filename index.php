@@ -14,6 +14,7 @@ use Crell\Stacker\RoutingMiddleware;
 use Crell\Stacker\DispatchingMiddleware;
 use Crell\Stacker\NegotiationMiddleware;
 use Crell\Stacker\EventMiddleware;
+use Crell\Stacker\CacheMiddleware;
 use Crell\Transformer\TransformerBus;
 use Phly\Http\ServerRequestFactory;
 use Phly\Http\Response;
@@ -93,6 +94,8 @@ $kernel = new HttpPathMiddleware($kernel, '/bye', function(RequestInterface $req
 // The outer-most kernel, strip off a base path.
 // In actual usage this would be some derived value or configured or something.
 $kernel = new BasePathResolverMiddleware($kernel, '/~crell/stacker');
+
+$kernel = new CacheMiddleware($kernel);
 
 $response = $kernel->handle($request);
 

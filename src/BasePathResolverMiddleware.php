@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: crell
- * Date: 1/14/15
- * Time: 5:31 PM
- */
 
 namespace Crell\Stacker;
 

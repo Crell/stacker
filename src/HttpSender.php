@@ -31,6 +31,8 @@ class HttpSender
 
     public function sendHeaders(ResponseInterface $response)
     {
+        header(sprintf('HTTP/%s %s %s', $response->getProtocolVersion(), $response->getStatusCode(), $response->getReasonPhrase()), true, $response->getStatusCode());
+
         foreach ($response->getHeaders() as $name => $values) {
             foreach ($values as $value) {
                 header(sprintf('%s: %s', $name, $value), false);
@@ -41,6 +43,10 @@ class HttpSender
     public function sendBody(ResponseInterface $response)
     {
         $body = $response->getBody();
+
+        // I don't trust that this will be at the beginning of the stream,
+        // so reset.
+        $body->rewind();
 
         // @todo Use stream operations to make this more robust and allow
         // writing to an arbitrary stream.

@@ -14,6 +14,8 @@ use Phly\Http\Stream;
 class StringStream extends Stream
 {
 
+    protected $string;
+
     public function __construct($string)
     {
         $stream = 'php://temp';
@@ -21,5 +23,8 @@ class StringStream extends Stream
 
         fwrite($this->resource, $string);
         fseek($this->resource, 0);
+
+        // This is for debugging.
+        $this->string = $string;
     }
 }

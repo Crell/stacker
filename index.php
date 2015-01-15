@@ -8,12 +8,14 @@ use Crell\Stacker\CallableHttpKernel;
 use Crell\Stacker\HttpPathMiddleware;
 use Crell\Stacker\BasePathResolverMiddleware;
 use Crell\Stacker\StringStream;
+use Crell\Stacker\StringValue;
 use Crell\Stacker\HttpSender;
 use Crell\Stacker\RoutingMiddleware;
 use Crell\Stacker\DispatchingMiddleware;
 use Phly\Http\ServerRequestFactory;
 use Phly\Http\Response;
 use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 
 
 $request = ServerRequestFactory::fromGlobals();
@@ -23,7 +25,13 @@ $kernel = new CallableHttpKernel(function (RequestInterface $request) {
     return new Response(new StringStream('Hello World'));
 });
 
-$kernel = new DispatchingMiddleware();
+$bus = new \Crell\Transformer\TransformerBus(ResponseInterface::class);
+
+$bus->setTransformer(StringValue::class, function (StringValue $string) {
+    return new Response(new StringStream($string));
+});
+
+$kernel = new DispatchingMiddleware($bus);
 
 // A routing-based middleware; doesn't actually do anything but the routing resolution.
 $router_factory = new RouterFactory;

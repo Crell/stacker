@@ -1,28 +1,39 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: crell
- * Date: 1/15/15
- * Time: 12:26 AM
- */
 
 namespace Crell\Stacker;
 
+use Crell\Transformer\TransformerBusInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
 class DispatchingMiddleware implements HttpMiddlewareInterface
 {
+    /**
+     * @var TransformerBusInterface
+     */
+    protected $responderBus;
+
+    public function __construct(TransformerBusInterface $responderBus)
+    {
+        $this->responderBus = $responderBus;
+    }
+
     public function handle(ServerRequestInterface $request)
     {
-
         $action = $request->getAttribute('action');
 
         $arguments = $this->getArguments($request, $request->getAttributes(), $action);
 
         $result = call_user_func_array($action, $arguments);
 
-        return $result;
+        if (is_string($result)) {
+            $result = new StringValue($result);
+        }
+        else if (is_array($result)) {
+            $result = new \ArrayObject($result);
+        }
+
+        return $this->responderBus->transform($result);
     }
 
     // These two functions are ripped *almost* directly from Symfony HttpKernel.

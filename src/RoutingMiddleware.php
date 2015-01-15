@@ -6,6 +6,7 @@ use Aura\Router\Route;
 use Aura\Router\Router;
 use Phly\Http\Response;
 use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
 class RoutingMiddleware implements HttpMiddlewareInterface
@@ -34,15 +35,31 @@ class RoutingMiddleware implements HttpMiddlewareInterface
 
         $route = $this->router->match($path, $request->getServerParams());
 
-        return $route ? $this->delegate($request, $route) : $this->handleFailure($request, $this->router->getFailedRoute());
+        return $route
+          ? $this->delegate($request, $route)
+          : $this->handleFailure($request, $this->router->getFailedRoute());
     }
 
-    protected function delegate(RequestInterface $request, Route $route)
+    /**
+     * @param RequestInterface $request
+     * @param Route $route
+     * @return ResponseInterface
+     */
+    protected function delegate(ServerRequestInterface $request, Route $route)
     {
-        $request = $request->setAttributes($route->params);
+        // We can't use setAttributes here, because there MAY already be attributes set.
+        foreach ($route->params as $k => $v) {
+            // Honestly this feels silly.
+            $request = $request->setAttribute($k, $v);
+        }
         return $this->inner->handle($request);
     }
 
+    /**
+     * @param RequestInterface $request
+     * @param Route $failure
+     * @return ResponseInterface
+     */
     protected function handleFailure(RequestInterface $request, Route $failure)
     {
         // inspect the failed route

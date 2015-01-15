@@ -12,6 +12,8 @@ use Crell\Stacker\StringValue;
 use Crell\Stacker\HttpSender;
 use Crell\Stacker\RoutingMiddleware;
 use Crell\Stacker\DispatchingMiddleware;
+use Crell\Stacker\NegotiationMiddleware;
+use Crell\Transformer\TransformerBus;
 use Phly\Http\ServerRequestFactory;
 use Phly\Http\Response;
 use Psr\Http\Message\RequestInterface;
@@ -25,7 +27,7 @@ $kernel = new CallableHttpKernel(function (RequestInterface $request) {
     return new Response(new StringStream('Hello World'));
 });
 
-$bus = new \Crell\Transformer\TransformerBus(ResponseInterface::class);
+$bus = new TransformerBus(ResponseInterface::class);
 
 $bus->setTransformer(StringValue::class, function (StringValue $string) {
     return new Response(new StringStream($string));
@@ -54,8 +56,10 @@ $router->add('hello2', '/goodbye/{name}')
         return "Goodbye {$name}";
     },
   ));
-
 $kernel = new RoutingMiddleware($kernel, $router);
+
+// Content negotiation, using the Willdurand library.
+$kernel = new NegotiationMiddleware($kernel);
 
 // A one-off handler.
 $kernel = new HttpPathMiddleware($kernel, '/bye', function(RequestInterface $request) {

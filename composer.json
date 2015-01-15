@@ -2,7 +2,8 @@
     "require": {
         "phly/http": "dev-feature/immutability@dev",
         "crell/transformer": "dev-master",
-        "aura/router": "2.2"
+        "aura/router": "2.2",
+        "willdurand/stack-negotiation": "~1.0@dev"
     },
     "autoload": {
         "psr-4": {

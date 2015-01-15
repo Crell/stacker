@@ -9,6 +9,7 @@ then try hitting these paths:
 * /bye
 * /hello/YourName
 * /goodbye/YourName
+* /forbidden
 
 Give feedback on the FIG mailing list. It's not impossible this will turn into
 a for-reals codebase later but at the moment it's just one-day a proof of concept.

@@ -15,6 +15,8 @@ use Crell\Stacker\DispatchingMiddleware;
 use Crell\Stacker\NegotiationMiddleware;
 use Crell\Stacker\EventMiddleware;
 use Crell\Stacker\CacheMiddleware;
+use Crell\Stacker\NotFoundError;
+use Crell\Stacker\ForbiddenError;
 use Crell\Transformer\TransformerBus;
 use Phly\Http\ServerRequestFactory;
 use Phly\Http\Response;
@@ -47,6 +49,12 @@ $bus->setTransformer(StringValue::class, function (StringValue $string) {
 $bus->setTransformer(Stream::class, function(Stream $stream) {
     return new Response($stream);
 });
+$bus->setTransformer(NotFoundError::class, function(NotFoundError $error) {
+    return (new Response(new StringStream($error)))->withStatus(404);
+});
+$bus->setTransformer(ForbiddenError::class, function(ForbiddenError $error) {
+    return (new Response(new StringStream($error)))->withStatus(403);
+});
 $kernel = new DispatchingMiddleware($bus);
 
 // A routing-based middleware; doesn't actually do anything but the routing resolution.
@@ -60,11 +68,16 @@ $router->add('hello', '/hello/{name}')
         return new Response(new StringStream("Hello {$name}"));
     },
   ));
-
 $router->add('hello2', '/goodbye/{name}')
   ->addValues(array(
     'action' => function(RequestInterface $request, $name) {
         return "Goodbye {$name}";
+    },
+  ));
+$router->add('forbidden', '/forbidden')
+  ->addValues(array(
+    'action' => function() {
+        return new ForbiddenError();
     },
   ));
 $kernel = new RoutingMiddleware($kernel, $router);

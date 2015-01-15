@@ -92,7 +92,7 @@ class NegotiationMiddleware implements HttpMiddlewareInterface
             // Symfony version:
             //$request->attributes->set('_accept', $accept);
             // PSR-7 version:
-            $request = $request->setAttribute('_accept', $accept);
+            $request = $request->withAttribute('_accept', $accept);
 
             if (null !== $accept && !$accept->isMediaRange()) {
                 // Symfony version:
@@ -100,8 +100,8 @@ class NegotiationMiddleware implements HttpMiddlewareInterface
                 //$request->attributes->set('_format', $this->formatNegotiator->getFormat($accept->getValue()));
                 // PSR-7 version:
                 $request = $request
-                  ->setAttribute('_mime_type', $accept->getValue())
-                  ->setAttribute('_format', $this->formatNegotiator->getFormat($accept->getValue()));
+                  ->withAttribute('_mime_type', $accept->getValue())
+                  ->withAttribute('_format', $this->formatNegotiator->getFormat($accept->getValue()));
             }
         }
 
@@ -113,13 +113,13 @@ class NegotiationMiddleware implements HttpMiddlewareInterface
             // Symfony version:
             //$request->attributes->set('_accept_language', $accept);
             // PSR-7 version:
-            $request = $request->setAttribute('_accept_language', $accept);
+            $request = $request->withAttribute('_accept_language', $accept);
 
             if (null !== $accept) {
                 // Symfony version:
                 // $request->attributes->set('_language', $accept->getValue());
                 // PSR-7 version:
-                $request = $request->setAttribute('_language', $accept->getValue());
+                $request = $request->withAttribute('_language', $accept->getValue());
             }
         }
 
@@ -181,7 +181,7 @@ class NegotiationMiddleware implements HttpMiddlewareInterface
                     // Symfony version:
                     // $request->request->replace($data);
                     // PSR-7 version, I think:
-                    $request = $request->setBodyParams($data);
+                    $request = $request->withBodyParams($data);
                 } else {
                     return 'Invalid ' . $format . ' message received';
                 }

@@ -104,17 +104,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/weierophinney/http.git",
-                "reference": "4dfa1699be24ed5044e16c4330fee75725ef5038"
+                "reference": "52729ba85dbcaa979309665efb8c907e142e25cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/weierophinney/http/zipball/4dfa1699be24ed5044e16c4330fee75725ef5038",
-                "reference": "4dfa1699be24ed5044e16c4330fee75725ef5038",
+                "url": "https://api.github.com/repos/weierophinney/http/zipball/52729ba85dbcaa979309665efb8c907e142e25cc",
+                "reference": "52729ba85dbcaa979309665efb8c907e142e25cc",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.4.8",
-                "psr/http-message": "dev-feature/full-mutability@dev"
+                "psr/http-message": "dev-feature/immutability@dev"
             },
             "require-dev": {
                 "phpunit/phpunit": "3.7.*",
@@ -159,20 +159,20 @@
                 "issues": "https://github.com/phly/http/issues",
                 "source": "https://github.com/phly/http"
             },
-            "time": "2015-01-13 18:05:40"
+            "time": "2015-01-15 19:25:01"
         },
         {
             "name": "psr/http-message",
-            "version": "dev-feature/full-mutability",
+            "version": "dev-feature/immutability",
             "source": {
                 "type": "git",
                 "url": "https://github.com/weierophinney/http-message.git",
-                "reference": "9ffea55a78a3960822f28949bcda443eb977b29c"
+                "reference": "9fcf948701c94f2079da80e11ee97b9ad3373ad0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/weierophinney/http-message/zipball/9ffea55a78a3960822f28949bcda443eb977b29c",
-                "reference": "9ffea55a78a3960822f28949bcda443eb977b29c",
+                "url": "https://api.github.com/repos/weierophinney/http-message/zipball/9fcf948701c94f2079da80e11ee97b9ad3373ad0",
+                "reference": "9fcf948701c94f2079da80e11ee97b9ad3373ad0",
                 "shasum": ""
             },
             "type": "library",
@@ -205,9 +205,9 @@
                 "response"
             ],
             "support": {
-                "source": "https://github.com/weierophinney/http-message/tree/feature/full-mutability"
+                "source": "https://github.com/weierophinney/http-message/tree/feature/immutability"
             },
-            "time": "2015-01-07 22:10:57"
+            "time": "2015-01-15 15:10:54"
         },
         {
             "name": "symfony/serializer",

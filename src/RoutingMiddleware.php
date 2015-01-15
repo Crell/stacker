@@ -29,9 +29,7 @@ class RoutingMiddleware implements HttpMiddlewareInterface
 
     public function handle(ServerRequestInterface $request)
     {
-        // No, really, this step is total nonsense.
-        $parts = parse_url($request->getUrl());
-        $path = $parts['path'];
+        $path = $request->getUri()->getPath();
 
         $route = $this->router->match($path, $request->getServerParams());
 
@@ -50,7 +48,7 @@ class RoutingMiddleware implements HttpMiddlewareInterface
         // We can't use setAttributes here, because there MAY already be attributes set.
         foreach ($route->params as $k => $v) {
             // Honestly this feels silly.
-            $request = $request->setAttribute($k, $v);
+            $request = $request->withAttribute($k, $v);
         }
         return $this->inner->handle($request);
     }
@@ -67,21 +65,21 @@ class RoutingMiddleware implements HttpMiddlewareInterface
             // the route failed on the allowed HTTP methods.
             // this is a "405 Method Not Allowed" error.
             $response = (new Response(new StringStream('405 Method Not Allowed')))
-                ->setStatus(405);
+                ->withStatus(405);
             return $response;
 
         } elseif ($failure->failedAccept()) {
             // the route failed on the available content-types.
             // this is a "406 Not Acceptable" error.
             $response = (new Response(new StringStream('406 Not Acceptable')))
-              ->setStatus(406);
+              ->withStatus(406);
             return $response;
         } else {
             // there was some other unknown matching problem.
 
             // I'm going to assume it's a 404 for now, just for kicks.
             $response = (new Response(new StringStream('404 Not Found')))
-              ->setStatus(404);
+              ->withStatus(404);
             return $response;
         }
     }

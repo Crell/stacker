@@ -73,13 +73,13 @@ $kernel = new RoutingMiddleware($kernel, $router);
 // best idea, but this is just a demo.
 $kernel = new EventMiddleware($kernel);
 $kernel->addRequestListener(function(ServerRequestInterface $request) {
-    return $request->setAttribute('some_silliness', 'myvalue');
+    return $request->withAttribute('some_silliness', 'myvalue');
 });
 $kernel->addResponseListener(function(ResponseInterface $response) {
     $content = $response->getBody()->getContents();
     $content .= "<p>My event was here!</p>\n";
 
-    return $response->setBody(new StringStream($content));
+    return $response->withBody(new StringStream($content));
 });
 
 // Content negotiation, using the Willdurand library.

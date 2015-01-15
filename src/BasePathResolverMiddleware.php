@@ -32,13 +32,14 @@ class BasePathResolverMiddleware implements HttpMiddlewareInterface
 
     public function handle(ServerRequestInterface $request)
     {
-        // No, really, this step is total nonsense.
-        $parts = parse_url($request->getUrl());
-        $path = $parts['path'];
+        $uri = $request->getUri();
+        $path = $uri->getPath();
 
         if (strpos($path, $this->basePath) == 0) {
+            // This song-and-dance is actually rather annoying.
             $newPath = substr($path, strlen($this->basePath));
-            $request = $request->setUrl($newPath);
+            $uri = $uri->withPath($newPath);
+            $request = $request->withUri($uri);
         }
 
         return $this->inner->handle($request);

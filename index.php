@@ -16,7 +16,7 @@ use Phly\Http\ServerRequestFactory;
 use Phly\Http\Response;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-
+use Phly\Http\Stream;
 
 $request = ServerRequestFactory::fromGlobals();
 
@@ -29,6 +29,9 @@ $bus = new \Crell\Transformer\TransformerBus(ResponseInterface::class);
 
 $bus->setTransformer(StringValue::class, function (StringValue $string) {
     return new Response(new StringStream($string));
+});
+$bus->setTransformer(Stream::class, function(Stream $stream) {
+    return new Response($stream);
 });
 
 $kernel = new DispatchingMiddleware($bus);

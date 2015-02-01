@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5017ef485769516bc1c2a3c2baf749b7",
+    "hash": "16b3e78a3931415367a85f8103c591ff",
     "packages": [
         {
             "name": "aura/router",
@@ -66,12 +66,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Crell/Transformer.git",
-                "reference": "55b9fbe40c73c4cb0bfe0b9c91cbd7b3763c734f"
+                "reference": "47cbe3aa872091a1afe5557499468d1a2119e05b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Crell/Transformer/zipball/55b9fbe40c73c4cb0bfe0b9c91cbd7b3763c734f",
-                "reference": "55b9fbe40c73c4cb0bfe0b9c91cbd7b3763c734f",
+                "url": "https://api.github.com/repos/Crell/Transformer/zipball/47cbe3aa872091a1afe5557499468d1a2119e05b",
+                "reference": "47cbe3aa872091a1afe5557499468d1a2119e05b",
                 "shasum": ""
             },
             "require-dev": {
@@ -96,25 +96,25 @@
                 }
             ],
             "description": "A simple object transformation library",
-            "time": "2015-01-12 03:35:49"
+            "time": "2015-01-22 21:09:50"
         },
         {
             "name": "phly/http",
-            "version": "dev-feature/immutability",
+            "version": "0.9.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/weierophinney/http.git",
-                "reference": "5cf0a7b419240a3af529fe0ad4e6584834163628"
+                "url": "https://github.com/phly/http.git",
+                "reference": "e3033b2ceae4c7b560d85540f8e4251c9b7aa2dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/weierophinney/http/zipball/5cf0a7b419240a3af529fe0ad4e6584834163628",
-                "reference": "5cf0a7b419240a3af529fe0ad4e6584834163628",
+                "url": "https://api.github.com/repos/phly/http/zipball/e3033b2ceae4c7b560d85540f8e4251c9b7aa2dd",
+                "reference": "e3033b2ceae4c7b560d85540f8e4251c9b7aa2dd",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.4.8",
-                "psr/http-message": "dev-feature/immutability@dev"
+                "psr/http-message": "~0.6.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "3.7.*",
@@ -132,14 +132,7 @@
                     "Phly\\Http\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "PhlyTest\\Http\\": "test/"
-                },
-                "files": [
-                    "test/TestAsset/Functions.php"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-2-Clause"
             ],
@@ -155,24 +148,20 @@
             "keywords": [
                 "http"
             ],
-            "support": {
-                "issues": "https://github.com/phly/http/issues",
-                "source": "https://github.com/phly/http"
-            },
-            "time": "2015-01-15 21:15:51"
+            "time": "2015-01-27 21:53:37"
         },
         {
             "name": "psr/http-message",
-            "version": "dev-feature/immutability",
+            "version": "0.6.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/weierophinney/http-message.git",
-                "reference": "77ba53d7284565914c062abc285b281fe7facaf4"
+                "url": "https://github.com/php-fig/http-message.git",
+                "reference": "70d7c442866f109cbda7f9dea8938e47fc3cc20c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/weierophinney/http-message/zipball/77ba53d7284565914c062abc285b281fe7facaf4",
-                "reference": "77ba53d7284565914c062abc285b281fe7facaf4",
+                "url": "https://api.github.com/repos/php-fig/http-message/zipball/70d7c442866f109cbda7f9dea8938e47fc3cc20c",
+                "reference": "70d7c442866f109cbda7f9dea8938e47fc3cc20c",
                 "shasum": ""
             },
             "type": "library",
@@ -186,6 +175,7 @@
                     "Psr\\Http\\Message\\": "src"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -204,10 +194,7 @@
                 "request",
                 "response"
             ],
-            "support": {
-                "source": "https://github.com/weierophinney/http-message/tree/feature/immutability"
-            },
-            "time": "2015-01-15 21:11:06"
+            "time": "2015-01-18 23:26:37"
         },
         {
             "name": "symfony/serializer",
@@ -216,12 +203,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Serializer.git",
-                "reference": "adaaeb3eb9cab1066f5979a53b783ed3b2684a03"
+                "reference": "47849771bb13837bdf384481ff75d996c6f0cf20"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Serializer/zipball/adaaeb3eb9cab1066f5979a53b783ed3b2684a03",
-                "reference": "adaaeb3eb9cab1066f5979a53b783ed3b2684a03",
+                "url": "https://api.github.com/repos/symfony/Serializer/zipball/47849771bb13837bdf384481ff75d996c6f0cf20",
+                "reference": "47849771bb13837bdf384481ff75d996c6f0cf20",
                 "shasum": ""
             },
             "require": {
@@ -266,7 +253,7 @@
             ],
             "description": "Symfony Serializer Component",
             "homepage": "http://symfony.com",
-            "time": "2015-01-09 06:51:41"
+            "time": "2015-01-28 07:13:07"
         },
         {
             "name": "willdurand/negotiation",
@@ -369,7 +356,6 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "phly/http": 20,
         "crell/transformer": 20,
         "willdurand/stack-negotiation": 20
     },

@@ -1,6 +1,6 @@
 {
     "require": {
-        "phly/http": "dev-feature/immutability@dev",
+        "phly/http": "0.9.1",
         "crell/transformer": "dev-master",
         "aura/router": "2.2",
         "willdurand/stack-negotiation": "~1.0@dev"
@@ -10,15 +10,5 @@
             "Crell\\Stacker\\": "src/"
         }
     },
-    "repositories": [
-        {
-            "url": "https://github.com/weierophinney/http-message.git",
-            "type": "vcs"
-        },
-        {
-            "url": "https://github.com/weierophinney/http.git",
-            "type": "vcs"
-        }
-    ],
     "minimum-stability": "dev"
 }

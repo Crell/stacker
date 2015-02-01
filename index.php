@@ -115,11 +115,10 @@ $kernel->addRequestListener(function(ServerRequestInterface $request) {
     return $request->withAttribute('some_silliness', 'myvalue');
 });
 $kernel->addResponseListener(function(ServerRequestInterface $request, ResponseInterface $response) {
-    // This line is seriously ugly. How else can we check "is this an HTML request", though?
-    if (in_array('text/html', explode(',', $request->getHeader('accept')))) {
+    // This only works with the convention of NegotiationMiddleware.
+    if ($request->getAttribute('_format') == 'html') {
         $content = $response->getBody()->getContents();
         $content .= "<p>My event was here!</p>\n";
-
         return $response->withBody(new StringStream($content));
     }
 });

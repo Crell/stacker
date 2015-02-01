@@ -19,14 +19,12 @@ class DecodeMyXmlMiddleware implements HttpMiddlewareInterface
 
     public function handle(ServerRequestInterface $request)
     {
-        //if ($request->getHeader('content-type') == 'application/xml') {
+        if ($request->getHeader('content-type') == 'application/xml') {
             $content = $request->getBody()->getContents();
-            //$simplexml = new \SimpleXMLElement($content);
-            $simplexml = new \SimpleXMLElement("<xml></xml>");
+            $simplexml = simplexml_load_string($content);
             $data = new MyDomainObject($simplexml);
             $request = $request->withBodyParams(['data' => $data]);
-       // }
-
+        }
         return $this->inner->handle($request);
     }
 

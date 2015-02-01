@@ -92,7 +92,7 @@ $router->addPost('jsonecho', '/jsonecho')
         return $response;
     },
   ));
-$router->add('xmlecho', '/xmlecho')
+$router->addPost('xmlecho', '/xmlecho')
   ->addValues(array(
     'action' => function(ServerRequestInterface $request) {
         /** @var MyDomainObject $my */
@@ -101,8 +101,7 @@ $router->add('xmlecho', '/xmlecho')
         $name = $my->getName();
         $result = "<message>Hello {$name}</message>\n";
         $response = (new Response(new StringStream($result)))
-        //  ->withHeader('content-type', 'application/xml')
-        ;
+          ->withHeader('content-type', 'application/xml');
         return $response;
     },
   ));
@@ -129,8 +128,8 @@ $kernel->addResponseListener(function(ServerRequestInterface $request, ResponseI
 $kernel = new NegotiationMiddleware($kernel);
 
 // Body parsing.
-$kernel = new \Crell\Stacker\DecodeMyXmlMiddleware($kernel);
 $kernel = new \Crell\Stacker\DecodeJsonMiddleware($kernel);
+$kernel = new \Crell\Stacker\DecodeMyXmlMiddleware($kernel);
 
 // A one-off handler.
 $kernel = new HttpPathMiddleware($kernel, '/bye', function(RequestInterface $request) {

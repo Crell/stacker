@@ -39,7 +39,6 @@ class EventMiddleware implements HttpMiddlewareInterface
     public function handle(ServerRequestInterface $request)
     {
         $request = $this->fireRequestListeners($request);
-
         $response = $this->inner->handle($request);
 
         $response = $this->fireResponseListeners($request, $response);

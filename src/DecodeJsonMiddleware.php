@@ -23,7 +23,6 @@ class DecodeJsonMiddleware implements HttpMiddlewareInterface
             $decoded = json_decode($request->getBody()->getContents());
             $request = $request->withBodyParams($decoded);
         }
-
         return $this->inner->handle($request);
     }
 

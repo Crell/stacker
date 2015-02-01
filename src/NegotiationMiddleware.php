@@ -169,7 +169,10 @@ class NegotiationMiddleware implements HttpMiddlewareInterface
             // PSR-7 version: (Note that we need the whole body string anyway in order to determine its mime type this way.
             $content = $request->getBody()->getContents();
 
-            if (!empty($content)) {
+            // PSR-7: Needed to add the second empty() call to ensure we don't
+            // conflict with another middleware that wants to parse the body
+            // before we get here.
+            if (!empty($content) && empty($request->getBodyParams())) {
                 try {
                     $data = $decoder->decode($content, $format);
                 } catch (\Exception $e) {

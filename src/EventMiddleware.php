@@ -2,6 +2,7 @@
 
 namespace Crell\Stacker;
 
+use Phly\Http\Response;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -42,7 +43,7 @@ class EventMiddleware implements HttpMiddlewareInterface
 
         $response = $this->inner->handle($request);
 
-        $response = $this->fireResponseListeners($response);
+        $response = $this->fireResponseListeners($request, $response);
         return $response;
     }
 
@@ -51,9 +52,24 @@ class EventMiddleware implements HttpMiddlewareInterface
         return $this->fireListeners($request, 'request', ServerRequestInterface::class);
     }
 
-    protected function fireResponseListeners(ResponseInterface $response)
+    protected function fireResponseListeners(ServerRequestInterface $request, ResponseInterface $response)
     {
-        return $this->fireListeners($response, 'response', ResponseInterface::class);
+        $priority = $this->listeners['response'];
+        ksort($priority);
+
+        foreach ($priority as $listeners) {
+            foreach ($listeners as $listener) {
+                $ret = $listener($request, $response);
+                // Listeners can modify the object by returning a new one, but otherwise
+                // cannot change anything.
+                // They also cannot short circuit other listeners; if you want to do that,
+                // use a middleware instead!
+                if ($ret instanceof ResponseInterface) {
+                    $response = $ret;
+                }
+            }
+        }
+        return $response;
     }
 
     protected function fireListeners($object, $type, $classType)
@@ -71,7 +87,6 @@ class EventMiddleware implements HttpMiddlewareInterface
                 if ($ret instanceof $classType) {
                     $object = $ret;
                 }
-
             }
         }
 

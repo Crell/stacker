@@ -3,7 +3,6 @@
 namespace Crell\Stacker;
 
 
-use Phly\Http\Uri;
 use Psr\Http\Message\ServerRequestInterface;
 
 class DecodeJsonMiddleware implements HttpMiddlewareInterface

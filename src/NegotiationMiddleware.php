@@ -2,16 +2,15 @@
 
 namespace Crell\Stacker;
 
-use Phly\Http\Response;
-use Psr\Http\Message\ServerRequestInterface;
-use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
+use Negotiation\Decoder\DecoderProvider;
+use Negotiation\Decoder\DecoderProviderInterface;
 use Negotiation\FormatNegotiator;
 use Negotiation\FormatNegotiatorInterface;
 use Negotiation\LanguageNegotiator;
 use Negotiation\NegotiatorInterface;
-use Negotiation\Decoder\DecoderProvider;
-use Negotiation\Decoder\DecoderProviderInterface;
+use Phly\Http\Response;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
 

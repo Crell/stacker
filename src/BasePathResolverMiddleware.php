@@ -2,7 +2,6 @@
 
 namespace Crell\Stacker;
 
-use Phly\Http\Uri;
 use Psr\Http\Message\ServerRequestInterface;
 
 class BasePathResolverMiddleware implements HttpMiddlewareInterface

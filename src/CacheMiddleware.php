@@ -2,7 +2,6 @@
 
 namespace Crell\Stacker;
 
-use Phly\Http\Response;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 

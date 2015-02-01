@@ -3,7 +3,6 @@
 namespace Crell\Stacker;
 
 
-use Phly\Http\Uri;
 use Psr\Http\Message\ServerRequestInterface;
 
 class DecodeMyXmlMiddleware implements HttpMiddlewareInterface
@@ -12,16 +11,6 @@ class DecodeMyXmlMiddleware implements HttpMiddlewareInterface
      * @var HttpMiddlewareInterface
      */
     protected $inner;
-
-    /**
-     * @var string
-     */
-    protected $path;
-
-    /**
-     * @var callable
-     */
-    protected $callable;
 
     public function __construct(HttpMiddlewareInterface $inner)
     {

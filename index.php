@@ -17,6 +17,7 @@ use Crell\Stacker\NotFoundError;
 use Crell\Stacker\RoutingMiddleware;
 use Crell\Stacker\StringStream;
 use Crell\Stacker\StringValue;
+use Crell\Stacker\MyDomainObject;
 use Crell\Transformer\TransformerBus;
 use Phly\Http\Response;
 use Phly\Http\ServerRequestFactory;
@@ -91,6 +92,20 @@ $router->addPost('jsonecho', '/jsonecho')
         return $response;
     },
   ));
+$router->add('xmlecho', '/xmlecho')
+  ->addValues(array(
+    'action' => function(ServerRequestInterface $request) {
+        /** @var MyDomainObject $my */
+        $params = $request->getBodyParams();
+        $my = $params['data'];
+        $name = $my->getName();
+        $result = "<message>Hello {$name}</message>\n";
+        $response = (new Response(new StringStream($result)))
+        //  ->withHeader('content-type', 'application/xml')
+        ;
+        return $response;
+    },
+  ));
 $kernel = new RoutingMiddleware($kernel, $router);
 
 // Setup pre-routing event listeners.  Remember, order in this file is backwards.
@@ -112,6 +127,10 @@ $kernel->addResponseListener(function(ServerRequestInterface $request, ResponseI
 
 // Content negotiation, using the Willdurand library.
 $kernel = new NegotiationMiddleware($kernel);
+
+// Body parsing.
+$kernel = new \Crell\Stacker\DecodeMyXmlMiddleware($kernel);
+$kernel = new \Crell\Stacker\DecodeJsonMiddleware($kernel);
 
 // A one-off handler.
 $kernel = new HttpPathMiddleware($kernel, '/bye', function(RequestInterface $request) {

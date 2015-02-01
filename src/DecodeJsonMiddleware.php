@@ -13,16 +13,6 @@ class DecodeJsonMiddleware implements HttpMiddlewareInterface
      */
     protected $inner;
 
-    /**
-     * @var string
-     */
-    protected $path;
-
-    /**
-     * @var callable
-     */
-    protected $callable;
-
     public function __construct(HttpMiddlewareInterface $inner)
     {
         $this->inner = $inner;
